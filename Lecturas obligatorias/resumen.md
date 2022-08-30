@@ -53,4 +53,7 @@ The message-sending metaphor provides modularity by decoupling the intent of a m
 
 >***Classification***: *A language must provide a means for classifying similar objects, and for adding new classes of objects on equal footing with the kernel classes of the system.*
 
- The complexity of a system can often be reduced by grouping similar components. Such grouping is achieved through data typing in conventional programming languages, and through classes in Smalltalk.
+A class describes other objects -- their internal state,the message protocol they recognize, and the internal methods for responding to thosemessages. The objects so described are called **instances** of that class.
+The complexity of a system can often be reduced by grouping similar components, in Smalltalk, through classes.
+
+>***Polymorphism***: *A program should specify only the behavior of objects, not theirrepresentation*.

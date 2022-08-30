@@ -57,9 +57,10 @@ Es la capacidad de respuesta que tienen distintos objetos de responder de manera
 
 ### Caracteristicas del lenguaje
 - Todo dentro del lenguaje es un objeto (numeros, cadenas, vectores, etc).
-- Las variables no tienen tipo, los objetos si.
+- Las variables son referencias a objetos y no tienen tipo, los objetos si.
 - Smalltalk compila los programas, pero no muestra error si operamos con variables que contienen referencias a objetos de tipos incompatibles, ya que estos solo existen en tiempo de ejecucion
-- Tampoco muestra error si enviamos mensajes a objetos que no los van a comprender, por el mismo motivo
+- Tampoco muestra error si enviamos mensajes a objetos que no los van a comprender, por el mismo motivo.
+- El lenguaje tiene recoleccion automatica de basura.
 - Las **variables locales** se declaran entre placas. `| variable1 variable2 |`
 - Las sentencias terminan con punto. "."
 - Los comentarios van entre comillas. `"Esto es un comentario"`
@@ -67,7 +68,9 @@ Es la capacidad de respuesta que tienen distintos objetos de responder de manera
 
 ### Creacion de objetos
 `celda23 := Celda new.`
-La creacion del objeto que representa la celda 2-3 se haria enviando el mensaje **new** a la clase **Celda**
+La creacion del objeto que representa la celda 2-3 se haria enviando el mensaje **new** a la clase **Celda**.  
+
+**IMPORTANTE**: `"celda23"` **_no_ es un objeto**, es una variable que referencia a un objeto celda. Algo asi como un puntero a un objeto.
 
 ### Implementacion de metodos
 ```

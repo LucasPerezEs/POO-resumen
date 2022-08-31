@@ -138,3 +138,38 @@ numeros add: 1/2.
 numeros add: 'HOLA'.
 numeros do: [ :numero | Transcript show: numero ].
 ```
+
+## Diseño por contrato
+Un objeto servidor brinda servicios a objetos clientes sobre la base de un contrato que ambos se comprometen a cumplir.  
+Tiene 4 elementos fundamentales:
+
+### Firmas de metodos
+*Determinan como hacer para pedirles servicios a los objetos*.
+
+Consiste en el nombre del metodo mas sus parametros. *Ej: puedoColocar(numero, filaCelda, columnaCelda)*  
+Al conjunto de las firmas de metodos se lo suele llamar interfaz o protocolo del objeto.
+
+### Precondiciones
+*Expresan en que estado debe estar el medio ambiente antes de que un objeto cliente le envie un mensaje a un receptor*.
+
+En general, el **medio ambiente** esta compuesto por el objeto receptor, el objeto cliente y los parametros del mensaje.  
+Si una precondicion no se cumple, el que no cumple el contrato es el cliente. El objeto receptor solo debe avisarle del incumplimiento al cliente llamando **excepciones**.  
+>***Excepciones***: *Es un objeto que el receptor de un mensaje le envia a su cliente como aviso de que no cumplio con alguna precondicion de ese mensaje*.
+
+### Postcondiciones
+*Expresa el estado en que debe quedar el medio como consecuencia de la ejecucion de un metodo*.  
+
+El cumplimiento de estas es responsabilidad del receptor. Si una postcondicion no se cumple esta mal programado. Por lo tanto, el correcto funcionamiento de una postcondicion se debe chequear con una *prueba unitaria**. 
+>***Prueba unitaria***: *Prueba que comprueba la correccion de una unica responsabilidad de un metodo*.  
+
+***Corolario***: Deberiamos tener al menos una prueba unitaria por postcondicion.  
+
+### Invariantes
+*Son condiciones que debe cumplir un objeto durante toda su existencia*.
+
+El cumplimiento de los invariantes es responsabilidad de todos los metodos de un objeto.  
+Suelen expresarse en forma de precondiciones o postcondiciones.  
+
+### Procedimiento del diseño por contrato
+Procedimiento tomando una postcondicion a la vez:  
+![Diseño por contrato](https://user-images.githubusercontent.com/86437352/187695942-1d440c75-48c5-4ec7-abee-9ff18b0b7aad.png)

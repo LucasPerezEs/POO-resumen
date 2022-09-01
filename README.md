@@ -139,6 +139,8 @@ numeros add: 'HOLA'.
 numeros do: [ :numero | Transcript show: numero ].
 ```
 
+Para mas detalles sobre arreglos, ver [este archivo.](https://github.com/LucasPerezEs/Algoritmos-y-Programacion-III/files/9469819/RefactoringDeColeccionesEnSmalltalk.pdf)
+
 ## Diseño por contrato
 Un objeto servidor brinda servicios a objetos clientes sobre la base de un contrato que ambos se comprometen a cumplir.  
 Tiene 4 elementos fundamentales:

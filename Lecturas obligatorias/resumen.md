@@ -1,6 +1,4 @@
-# Resumen Lecturas obligatorias
-
-## Design Principles Behind Smalltalk
+# Design Principles Behind Smalltalk
 
 > **Uniform Metaphor**: *A language should be designed around a powerful metaphor that can be uniformly applied in all areas.*
 

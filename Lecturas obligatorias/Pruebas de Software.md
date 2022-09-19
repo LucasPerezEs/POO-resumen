@@ -92,3 +92,26 @@ podrían escribir los testers, pero es imperativo validarlas con los usuarios.
 
 
 ## Pruebas y desarrollo
+
+### Cuándo probamos
+Hoy en día, con el surgimiento de ciclos de flujo continuo, las pruebas son continuas a lo largo de todo el desarrollo.   
+Dada vez que se incorporan características a un programa, podemos provocar que dejen de funcionar cosas que ya habían sido probadas y entregadas: esto es lo que se llama una **`regresión`**.  
+Para evitarlas, se ejecutan cada tanto, **`pruebas de regresión`**, que no es otra cosa que ejecutar las pruebas de todo el sistema a intervalos regulares.
+
+### Ventajas de la automatización
+- Nos independizamos del factor humano.
+- Es más fácil repetir las mismas pruebas, aplicable a regresiones, debugging y errores provenientes del sistema ya en producción.
+- Sirven como herramienta de comunicación, minimizando las ambigüedades.
+
+### Tipos de pruebas y automatización
+![image](https://user-images.githubusercontent.com/86437352/191127424-84b55704-4500-4c8e-aeb9-e5c178ae4bc1.png)
+
+### TDD
+Básicamente, incluye tres sub-prácticas:
+- **Automatización**: las pruebas del programa deben ser hechas en código, y con la sola ejecución del código de pruebas debemos saber si lo que estamos probando funciona bien o mal.
+- **Test-First**: las pruebas se escriben antes del propio código a probar.
+- **Refactorización posterior**: para mantener la calidad del código, se lo cambia sin
+cambiar la funcionalidad, manteniendo las pruebas como reaseguro.
+
+**Ciclo del TDD**:  
+![image](https://user-images.githubusercontent.com/86437352/191128877-d5c2add6-edc5-4812-87f7-b5d752e818d4.png)

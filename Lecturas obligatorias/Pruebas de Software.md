@@ -1,5 +1,29 @@
 # Pruebas de Software - Resumen
 
+- [Que Probamos](#que-probamos)
+  - [Verificacion y Validacion](#verificacion-y-validacion)
+  - [Funcionalidades y atributos de calidad](#funcionalidades-y-atributos-de-calidad)
+- [Alcance de las pruebas](#alcance-de-las-pruebas)
+  - [Alcance de las pruebas de verificación](#alcance-de-las-pruebas-de-verificación)
+  - [Alcance de las pruebas de validación](#alcance-de-las-pruebas-de-validación)
+  - [Pruebas en producción](#pruebas-en-producción)
+  - [La pirámide de pruebas y sus razones](#la-pirámide-de-pruebas-y-sus-razones)
+- [Roles del desarrollo ante las pruebas](#roles-del-desarrollo-ante-las-pruebas)
+  - [Visiones Tradicionales](#visiones-tradicionales)
+  - [La Vision Agil](#la-vision-agil)
+  - [Pruebas automatizadas: quién las desarrolla](#pruebas-automatizadas-quién-las-desarrolla)
+- [Pruebas y desarrollo](#pruebas-y-desarrollo)
+  - [Cuándo probamos](#cuándo-probamos)
+  - [Ventajas de la automatizacion](#ventajas-de-la-automatización)
+  - [Tipos de pruebas y automatización](#tipos-de-pruebas-y-automatización)
+  - [TDD](#tdd)
+  - [Integración y entrega continuas](#integración-y-entrega-continuas)
+- [¿Cómo se diseña una prueba?](#cómo-se-diseña-una-prueba)
+  - [Diseño de pruebas unitarias y técnicas en general](#diseño-de-pruebas-unitarias-y-técnicas-en-general)
+  - [Diseño de pruebas de cliente](#diseño-de-pruebas-de-cliente)
+- [Cobertura](#cobertura)
+
+
 ## Que probamos
 
 ### Verificacion y Validacion
@@ -21,7 +45,7 @@ Hay muchos tipos de pruebas de atributos de calidad, entre ellos: Pruebas de com
 
 ## Alcance de las pruebas
 
-### Alcance de las pruebas de verificación (o técnicas)
+### Alcance de las pruebas de verificación
 - Las **`pruebas unitarias`** verifican pequeñas porciones de código. Se trata de pruebas que ejecutan los programadores para ver que lo que acaban
 de escribir hace lo que ellos pretendían.
 - Las **`pruebas de integración`**, en cambio, prueban que varias porciones de código, trabajando
@@ -42,7 +66,7 @@ estamos probando.
 Cuando, en cambio, analizamos el código durante la prueba, decimos que es una prueba de **`caja blanca`**.   
 En general, se prefiere hacer pruebas de caja negra, precisamente porque se desea probar el funcionamiento y no verificar la calidad del código.
 
-### Alcance de las pruebas de validación (o de usuarios)
+### Alcance de las pruebas de validación
 - En general, se suele trabajar con pruebas de aceptación diseñadas por usuarios pero que ejecuta el equipo de desarrollo. Estas pruebas, se suelen
 denominar **`pruebas de aceptación de usuarios (UAT18)`**.  
 - Si las pruebas las hacemos en un entorno controlado por el equipo de desarrollo, las llamamos

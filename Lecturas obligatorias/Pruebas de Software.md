@@ -113,5 +113,64 @@ Básicamente, incluye tres sub-prácticas:
 - **Refactorización posterior**: para mantener la calidad del código, se lo cambia sin
 cambiar la funcionalidad, manteniendo las pruebas como reaseguro.
 
+**Ventajas de usar TDD**:
+- Las pruebas en código sirven como documentación del uso esperado de lo que se está
+probando, sin ambigüedades.
+- Las pruebas escritas con anterioridad ayudan a entender mejor lo que se está por
+desarrollar.
+- Las pruebas escritas con anterioridad suelen incluir más casos de pruebas negativas
+que las que escribimos a posteriori.
+- Escribir las pruebas antes del código a probar minimiza el condicionamiento del autor
+por lo ya construido.
+- Escribir las pruebas antes del código a probar permite especificar el comportamiento
+sin restringirse a una única implementación.
+- La automatización permite independizarse del factor humano y facilita la repetición de
+las mismas pruebas a un costo menor.
+- La refactorización constante facilita el mantenimiento de un buen diseño a pesar de los
+cambios que, en caso de no hacerla, lo degradarían.
+
 **Ciclo del TDD**:  
 ![image](https://user-images.githubusercontent.com/86437352/191128877-d5c2add6-edc5-4812-87f7-b5d752e818d4.png)
+
+### Integración y entrega continuas
+Otra práctica que surgió a partir de las recomendaciones de Kent Beck fue la de **`integración
+continua (CI)`**. Básicamente consiste en realizar la compilación,
+construcción y pruebas del producto en forma sucesiva y automática como parte de la
+integración.  
+Como una derivación de CI surgió la práctica de **`entrega continua (CD)`**. Mientras que en
+CI la línea de automatización termina con una integración en el ambiente de desarrollo, CD
+pretende que el código siempre esté en condiciones de ser desplegado en el ambiente
+productivo.
+Finalmente, hay una técnica denominada **`despliegue continuo`** que, no sólo pretende que se
+esté permanentemente en condiciones de desplegar, sino que efectivamente cada pequeño
+cambio se despliegue en el ambiente de producción.
+
+## ¿Cómo se diseña una prueba?
+
+### Diseño de pruebas unitarias y técnicas en general
+Analicemos la construcción de pruebas unitarias de caja negra.
+- Lo que podríamos hacer es seguir las nociones del diseño por contrato: establecer precondiciones y postcondiciones.
+- Con las precondiciones podemos obtener casos de excepción.
+- Cada postcondición debería al menos definir una prueba.
+
+### Diseño de pruebas de cliente
+- Si la prueba debe chequear un requisito del cliente, es bueno usar la técnica de especificar con ejemplos.  
+- En términos de requerimientos de software, pensaríamos que al menos tiene que haber una
+prueba para el escenario típico, una para cada flujo de excepción y una para cada flujo
+alternativo.
+
+
+## Cobertura
+Llamamos **`cobertura`** al grado en que los casos de pruebas de un programa llegan a recorrer
+dicho programa al ejecutar las pruebas.
+- Se usan como una **medida de la calidad de las pruebas**: a mayor
+cobertura, las pruebas del programa son más exhaustivas, y por lo tanto existen menos
+situaciones que no están siendo probadas.
+- No hay que confundir con la calidad del programa: la cobertura mide sólo la calidad de las pruebas.
+- El nivel de cobertura no debería guiar el desarrollo.
+- Una buena idea es usar las métricas de cobertura para observar tendencias, si una
+determinada métrica de cobertura disminuye con el tiempo, se puede deber a que la aplicación
+creció sin que se escribieran las pruebas correspondientes.
+- Las zonas de mayor criticidad requerirán un grado de cobertura mayor, tal vez cercana al
+100%, mientras que las zonas menos críticas tal vez admitan un grado de cobertura mucho
+menor.

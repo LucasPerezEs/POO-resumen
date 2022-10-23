@@ -66,3 +66,16 @@ Tanto la impresora como el escaner y la fotocopiadora tienen metodos que no debe
 - **"Los modulos de alto nivel no deben depender de los de bajo nivel, ambos deben depender de las abstracciones"**
 - Las abstracciones no deben depender de los detalles/implementaciones, los detalles/implementaciones deben depender de las abstracciones.
 
+Ejemplo:
+
+**Problema:** 
+Hay un modulo de alto nivel (Facturador) que depende de bajo nivel (una base de datos). Facturador tiene como variable a RepositorioProducto.
+
+![image](https://user-images.githubusercontent.com/86437352/197422066-900336d7-a6b7-4295-97b1-b323bfd14700.png)
+
+**Solucion:** 
+Creamos una interfaz que sea implementada por RepositorioProducto, y mediante la inyeccion de dependencias, hacemos que Facturador no tenga a RepositorioProducto como parametro, sino que en el constructor se le pase un objeto que implemente la interfaz Repositorio. De esta forma podemos hacer mejor testing con el uso de mocks, stubs, etc.
+
+![image](https://user-images.githubusercontent.com/86437352/197422207-797cc985-b096-468d-bbbc-834083e43289.png)
+
+

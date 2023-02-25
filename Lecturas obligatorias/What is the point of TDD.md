@@ -45,12 +45,40 @@ whereas running tests:
 > ***Never write new functionality without a failing test.***
 
 ### The Bigger Picture
-When we’re implementing a feature, we start by writing an acceptance test, which exercises the functionality we want to build. While it’s failing, an acceptance test demonstrates that the system does not yet implement that feature; when it passes, we’re done. 
+When we’re implementing a feature, we start by writing an ***acceptance test***, which exercises the functionality we want to build. While it’s failing, an acceptance test demonstrates that the system does not yet implement that feature; when it passes, we’re done. 
 Underneath the acceptance test, we follow the unit level test/implement/refactor cycle to develop the feature; 
 
 ![image](https://user-images.githubusercontent.com/86437352/221301753-d9460bce-aafe-4797-9e11-997fc71e97e0.png)
 
 ### Testing End-to-End
-An acceptance test should exercise the system end-to-end without directly calling its internal code. An end-to-end test interacts with the system only from the outside: through its user interface, by sending messages as
-if from third-party systems
+An acceptance test should exercise the system end-to-end without directly calling its internal code. An **end-to-end test interacts with the system only from the outside: through its user interface**, by sending messages as if from third-party systems. We try to avoid acceptance tests that just exercise the internal objects of the system.
 
+### Levels of Testing
+We build a hierarchy of tests that correspond to some of the nested feedback loops we described above:
+
+- **Acceptance**: Does the whole system work?
+- **Integration**: Does our code work against code we can't change?
+- **Unit**: Do our objects do the right thing, are they convenient to work with?
+
+We use ***“acceptance tests”*** to help us understand and agree on what we are going to build next. We also use them to make sure that we haven’t broken any existing features as we continue developing.  
+
+We use the term ***"integration tests"*** to refer to the tests that check how some of our code works with code from outside the team that we can’t change.
+
+### External and Internal Quality
+
+We can make a distinction between external and internal quality: 
+> ***External quality:***  How well the system **meets the needs of its customers and users** (is it functional, reliable, available, responsive, etc.)
+> ***Internal quality:***  How well it **meets the needs of its developers and administrators** (is it easy to understand, easy to change, etc.).
+
+The point of maintaining internal quality is to allow us to modify the system’s behavior safely and predictably, because it minimizes the risk that a change will force major rework.
+
+Running end-to-end tests tells us about the external quality of our system, andwriting them tells us something about how well we (the whole team) understand the domain, but **end-to-end tests don’t tell us how well we’ve written the code**.
+
+Writing unit tests gives us a lot of feedback about the quality of our code, and running them tells us that we haven’t broken any classes—but, again, **unit tests
+don’t give us enough confidence that the system as a whole works**.
+
+Integration tests fall somewhere in the middle
+
+![image](https://user-images.githubusercontent.com/86437352/221381299-d82b948d-98b6-4fa5-8b14-6b6d1878190d.png)
+
+Thorough unit testing helps us improve the internal quality because it needs to create the object, provide its dependencies, interact with it, and check that it behaved as expected. So, for a class to be easy to unittest, the class must have explicit dependencies that can easily be substituted and clear responsibilities that can easily be invoked and verified. That means that the code must be ***loosely coupled*** and ***highly cohesive***.

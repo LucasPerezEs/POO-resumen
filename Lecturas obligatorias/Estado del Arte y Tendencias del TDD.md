@@ -69,3 +69,87 @@ Los frameworks tradicionales de UTDD suelen verificar el comportamiento de los o
 y nos vemos obligados a cambiar la interfaz de la misma solamente para las pruebas.
 
 ### Una propuesta de solución: NDD
+Como propuesta de solución para este problema, Steve Freeman plantea que el comportamiento de los objetos debería estar definido en términos de cómo envía mensajes a otros objetos, además de los resultados devueltos en respuesta a mensajes recibidos, esto último propio de UTDD. Esta práctica se presentó como ***Need-Driven Development (NDD)***. 
+
+El propósito fundamental es resolver un buen diseño orientado a objetos y una separación clara de incumbencias, sobre la base de:
+- Mejorar el código con términos de dominio.
+- Preservar el encapsulamiento.
+- Reducir dependencias.
+- Clarificar las interacciones entre clases. 
+
+La diferencia fundamental con el UTDD tradicional, en el que se basa, es que **pretende definir de antemano qué mensajes emitirá el objeto sometido a prueba cuando
+reciba un mensaje en particular**. 
+
+Como esto **requiere de otros objetos que puedan recibir a su vez los mensajes emitidos** por el objeto receptor, pero dichos objetos podrían no tener su clase definida en el momento de escribir la prueba, NDD propone implementarlos como **Mock Objects** a partir solamente de la interfaz requerida.
+
+### Discusión sobre pros y contras
+Una consecuencia positiva del uso de esta técnica es que, al trabajar sobre la base de protocolos, además definidos en la forma restringida que necesita cada funcionalidad, **se suele llegar a interfaces bien angostas**.
+
+Y como siempre se crea antes la interfaz que la clase, **suelen obtenerse conceptos bien abstractos definidos a nivel de interfaces**.
+
+La misma razón hace que tendamos a escribir **código de pruebas menos acoplado** a implementaciones particulares.
+
+Por otro lado, es innegable que NDD **promueve el ocultamiento de implementación**, ya que impone un protocolo para los objetos receptores, pero no dice cómo implementarlo. 
+
+El principal problema que representa NDD es que **es sensible a las refactorizaciones de los objetos colaboradores**, ya que cuando renombramos métodos, las pruebas dejan de funcionar.
+
+Otra consecuencia, tal vez negativa, es que **resulta costoso tener que crear Mock Objects realistas para todas las interfaces posibles** del objeto a desarrollar. 
+
+
+## Pruebas de interacción y TDD 
+### Pruebas e interfaz de usuario 
+Todas las prácticas anteriores (TDD, ATDD, BDD, STDD, NDD) fueron pensadas para especificar, diseñar y probar comportamiento de dominio. No se han planteado automatizar pruebas de interfaz de usuario, de interacción.   
+
+Por que?
+-  "No conviene hacer pruebas automatizadas sobre la interfaz de usuario, porque **ésta es muy cambiante y las pruebas se desactualizan con mucha frecuencia**."
+-  "Hay que **separar el qué del cómo**, diciendo que el cómo es menos relevante y más cambiante, y por lo tanto no debe ser parte de TDD"
+-  Las pruebas de interfaz de usuario **suelen ser muy lentas de ejecutarse**, lo cual las hace poco convenientes en los términos de las barreras tecnológicas a los métodos ágiles
+-  Encima, hay cuestiones que sólo las puede probar satisfactoriamente un usuario humano. Por ejemplo, la ubicación de los botones, los colores, etc.
+
+Pero esto está dejando de lado algo fundamental: el valor para el negocio, que se logra indudablemente mediante **el comportamiento, se exhibe y se materializa a través de la interfaz de usuario**.
+Ademas, la mayoría de los usuarios reales sólo consideran que la aplicación les sirve cuando la ven a través de su interfaz de usuario
+
+En definitiva, ***no se puede dejar sin probar la interfaz de usuario***. 
+
+El conflicto de TDD con esta forma de trabajo es más bien filosófico: la propia noción de construir algo para luego grabar su ejecución no se lleva bien con la práctica de Test-First, básica de TDD.
+
+### La falta de una visión integral 
+Todavía falta, **para considerar a TDD una técnica completa**, que **las pruebas de interacción sobre la interfaz de usuario puedan integrarse a las pruebas de comportamiento**, a nivel de modelo de negocio.
+
+De todas maneras, aun cuando no haya una integración entre ambos tipos de pruebas, **hacerlas por separado es un gran avance**. De hecho, probar la interfaz de usuario sabiendo de antemano que el comportamiento está funcionando correctamente y ha sido probado, es más tranquilizante.
+
+### Limitaciones de las pruebas de interacción 
+Las pruebas de interacción automatizadas tienen mala fama, a tal punto que a este problema se le ha dado un nombre: ***“El problema de la prueba frágil”***
+
+Los problemas que suelen presentar las pruebas automatizadas de interacción generadas por grabación, son: 
+- **Sensibilidad al comportamiento**: los cambios de comportamiento provocan cambios importantes en la interfaz de usuario, que hacen que las pruebas de interacción dejen de funcionar.
+- **Sensibilidad a la interfaz**: aún cambios pequeños a la interfaz de usuario suelen provocar que las pruebas dejen de correr y deban ser cambiadas. 
+- **Sensibilidad a los datos**: cuando hay cambios en los datos que se usan para correr la aplicación, los resultados que ésta arroje van a cambiar, lo que hace que haya que generar datos especiales para probar.
+- **Sensibilidad al contexto**: igual que con los datos, las pruebas pueden ser sensibles a cambios en dispositivos externos a la aplicación.
+
+
+## Tipos de pruebas y automatización
+### Qué automatizar 
+Si partimos de la noción de que las pruebas se hacen para controlar la calidad del producto,podemos clasificarlas en más de una dimensión: 
+- **Pruebas de cliente**: explicitan la intención del analista de negocio y hacen las veces de especificaciones ejecutables. 
+- **Pruebas de componentes**: definen el diseño del sistema y explicitan la intención del arquitecto; a veces se las llama pruebas de integración técnicas. 
+- **Pruebas de unidad**: definen el diseño del código y explicitan la intención deldesarrollador.
+- **Pruebas de usabilidad**: definen si el sistema es cómodo de usar (y aprender a usar) para sus usuarios.
+- **Pruebas exploratorias**: definen si el sistema es consistente desde el punto de vista del cliente.
+- **Pruebas de propiedades**: especifican atributos de calidad, definiendo si el sistema es seguro, escalable, robusto, etc. 
+
+Las de cliente, las de componentes, las de unidad y las de propiedades, se pueden y conviene automatizarlas.  
+En cambio, las pruebas de usabilidad y las exploratorias, sólo es posible hacerlas en forma manual. 
+
+
+## Estudios del uso de TDD en la práctica
+### Conclusiones extraídas de la evidencia analizada 
+- En cuanto a la calidad externa medida a través de la densidad de defectos encontrados en las pruebas funcionales, se ha reportado una mejora de entre el 40% y el 90%
+- En cuanto al tiempo de desarrollo, se ha reportado un mayor tiempo, del entre 15% y el 35%
+- Se reporta un descenso en la cantidad de errores introducidos
+- Incluso los tiempos de corrección de errores y de cambios muestran descensos interesantes.
+
+Hay también aspectos cualitativos que se analizan en los trabajos analizados. Entre ellos destacan:
+- La presión interna de la organización pone en riesgo el uso correcto de TDD, tanto por no comprender la importancia de escribir la cantidad de pruebas necesarias como por la tendencia a abandonar la práctica cuando los cronogramas se vuelven más ajustados.
+- Cuando se presentan muchas trabas, humanas, metodológicas o tecnológicas, para hacer TDD, los desarrolladores suelen dejar de lado la práctica en poco tiempo.
+- La satisfacción laboral suele ser mayor para los desarrolladores que con TDD pueden ver que las pruebas corren satisfactoriamente.

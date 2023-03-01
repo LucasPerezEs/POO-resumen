@@ -153,3 +153,31 @@ Hay también aspectos cualitativos que se analizan en los trabajos analizados. E
 - La presión interna de la organización pone en riesgo el uso correcto de TDD, tanto por no comprender la importancia de escribir la cantidad de pruebas necesarias como por la tendencia a abandonar la práctica cuando los cronogramas se vuelven más ajustados.
 - Cuando se presentan muchas trabas, humanas, metodológicas o tecnológicas, para hacer TDD, los desarrolladores suelen dejar de lado la práctica en poco tiempo.
 - La satisfacción laboral suele ser mayor para los desarrolladores que con TDD pueden ver que las pruebas corren satisfactoriamente.
+
+
+## Limitaciones de TDD y prácticas afines
+A continuación enumeramos algunas situaciones en las que TDD no es una buena idea: 
+- Para el desarrollo de **mantenimiento evolutivo de software ya construido**, en el que **no se haya utilizado TDD en sus versiones previas**. Al no haber pruebas de regresión automatizadas previas, se hace difícil ver materializadas las ventajas de TDD en las refactorizaciones y los cambios de requerimientos.
+- Para el **diseño y pruebas de interfaces de usuario**, aun cuando hay herramientas y se han hecho algunos intentos, como dijimos más arriba.
+- Para infraestructura de servicios web.
+- Para operaciones contra bases de datos. Si bien es posible y técnicamente sencillo utilizar TDD en estos casos, consume mucho tiempo de ejecución y es necesario escribir mucho código de inicialización.
+
+
+## Conclusiones
+Las ventajas que ofrece TDD, de nuevo según Freeman y Pryce, son:
+- Clarifica los criterios de aceptación de cada requerimiento a implementar.
+- Al hacer los componentes fáciles de probar, tiende a bajar el acoplamiento entre los mismos.
+- Nos da una especificación ejecutable de lo que el código hace.
+- Nos da una serie de pruebas de regresión completa.
+- Facilita la detección de errores mientras el contexto está fresco en nuestras mentes.
+- Nos dice cuándo debemos dejar de programar, disminuyendo el gold-plating y características innecesarias. 
+
+Ahora bien, hay muchas clases de TDD.  
+
+UTDD está típicamente basado en diseño de clases, en el chequeo del estado de los objetos luego de un mensaje y se basa en un esquema ***bottom-up***.
+BDD y STDD se basan en diseño integral, enfocándose en el chequeo de comportamiento y de en el desarrollo ***top-down***.
+NDD se encuentra a mitad de camino de ambos enfoques.
+
+Lo que ocurre es que hay dos maneras de ver la calidad: una interna, la que les sirve a los desarrolladores, y otra externa, la que perciben usuarios y clientes. 
+
+**UTDD y NDD** apuntan a la **calidad interna**, mientras que **BDD y STDD** apuntan a la **externa**. 

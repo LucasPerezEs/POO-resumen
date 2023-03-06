@@ -25,3 +25,7 @@ Ahora puedes sobrescribir el método fábrica en una subclase y cambiar la clase
 ### Estructura: 
 ![image](https://user-images.githubusercontent.com/86437352/223203839-31ad19b0-ff85-4cc0-b358-c09194c65e85.png)
 
+### Principios que respeta:
+- ***Principio de responsabilidad única***: Puedes mover el código de creación de producto a un lugar del programa, haciendo que el código sea más fácil de mantener.
+- ***Principio de abierto/cerrado***: Puedes incorporar nuevos tipos de productos en el programa sin descomponer el código cliente existente.
+
